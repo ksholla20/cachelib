@@ -6,7 +6,7 @@ int main() {
 	C->put("1", "asd");
 	C->put("2", "qwe");
 	C->put("3", "fre");
-	cout << C->get("2");
+	cout << C->get("2") << endl;
 	C->put("4", "lkj");
 	C->put("5", "def");
 	C->put("3", "cvd");
