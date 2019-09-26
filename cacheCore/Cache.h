@@ -8,6 +8,22 @@ enum CacheType {
 	LRU_CACHE,
 	LFU_CACHE
 };
+
+struct CacheData {
+	string key;
+	string value;
+	int ttl;
+	CacheData(string k, string v, int t) : key(k), value(v), ttl(t) {}
+};
+typedef shared_ptr<CacheData> CacheDataPtr;
+
+class comparator {
+public:
+	bool operator()(const CacheDataPtr l, const CacheDataPtr r) {
+		return l->ttl > r->ttl;
+	}
+};
+
 class Cache;
 typedef shared_ptr<Cache> CachePtr;
 class Cache

@@ -1,4 +1,6 @@
 #include <iostream>
+#include <chrono>
+#include <thread>
 #include "Cache.h"
 using namespace std;
 int main() {
@@ -13,6 +15,11 @@ int main() {
 	RU_CACHE->put("6", "hgf");
 	RU_CACHE->deleteKey("3");
 	RU_CACHE->put("7", "poi");
+	RU_CACHE->put("8", "iuy", 1);
+	RU_CACHE->put("9", "uyt");
+	chrono::seconds span(2);
+	this_thread::sleep_for(span);
+	cout << RU_CACHE->get("7") << endl;
 
 	cout << "______________" << endl;
 
@@ -27,6 +34,10 @@ int main() {
 	FU_CACHE->put("6", "hgf");
 	FU_CACHE->deleteKey("3");
 	FU_CACHE->put("7", "poi");
+	FU_CACHE->put("8", "iuy", 1);
+	FU_CACHE->put("9", "uyt");
+	this_thread::sleep_for(span);
+	cout << FU_CACHE->get("7") << endl;
 
 	return 0;
 }

@@ -3,18 +3,22 @@
 #include <queue>
 #include "Cache.h"
 #include "DoublyLinkedList.h"
+#include "custom_priority_queue.h"
+
 class LFUCache :
 	public Cache
 {
 private:
 	int cacheSize;
 	int curCnt = 0;
-	map<string, string> M;
+	map<string, CacheDataPtr> M;
 	map<string, int> freq;
 	map<int, shared_ptr<DoublyLinkedList<string>>> counter;
+	custom_priority_queue<CacheDataPtr, vector<CacheDataPtr>, comparator> P;
 
 	void insertCount(string key, int cnt);
 	void deleteKeyInQueue(string key);
+	void removeExpiredEntry();
 
 	void print();
 public:

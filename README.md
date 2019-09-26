@@ -3,7 +3,8 @@ Designing a Caching library
 
 ## Description
 There are 2 projects. CacheCore has the caching library, and cache is the wrapper project.
-In this one, only LRU cache is implemented
+LRU and LFU cache are implemented
+This is done as preparation for design interview. This is definitely not production worthy
 
 ## Installation
 This is a Visual studio based solution
@@ -42,6 +43,13 @@ In every Put, key - value map is updated. Similarly frequency of 1 is assigned t
 In a get, Frequency is increased by 1, and key is moved in frequency - key map from current frequency to next
 In frequency-key map, multiple keys can have same frequency. Hence a queue of keys is maintained.
 During eviction, we extract key from bucket having least frequency. As we extract key from a queue, least recently used key is evicted
+
+### TTL implementation
+TTL can be implemented in various ways.
+One of the most popular way is reactive TTL. i.e., when user asks for a key, it's expiry is checked and deleted if required
+In here, Psuedo proactive method is used. During any call to cache, we check if there are any keys to be expired and it is deleted
+To achieve this one, a min heap is used where comparison is on TTL. Top of the heap denotes the node which has to be expired at the earliest
+As C++ STL priority queue does not support random erase, the STL is extended to support the functionality
 
 ### Additional tools
 For doubly linked list, we have created a new custom templatized class, which expose required functionalities
