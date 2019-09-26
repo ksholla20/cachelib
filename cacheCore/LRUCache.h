@@ -1,30 +1,26 @@
 #pragma once
 #include <map>
+#include <memory>
 #include "Cache.h"
+#include "DoublyLinkedList.h"
 
-struct ListNode {
-	ListNode* prev;
-	ListNode* next;
-	string key, value;
+struct CacheData {
+	string key;
+	string value;
 	int ttl;
-	ListNode(string k, string v, int t): key(k), value(v), ttl(t), prev(NULL), next(NULL){}
+	CacheData(string k, string v, int t) : key(k), value(v), ttl(t){}
 };
+typedef shared_ptr<CacheData> CacheDataPtr;
 class LRUCache :
 	public Cache
 {
 private:
 	int cacheSize;
 	int curCnt = 0;
-	ListNode* beg = NULL;
-	ListNode* end = NULL;
-	map<string, ListNode*> M;
+	shared_ptr<DoublyLinkedList<CacheDataPtr>> DLL;
+	map<string, ListNode<CacheDataPtr>*> M;
 
-	void deleteNode(ListNode* node);
-	ListNode* addNode(string key, string value, int ttl);
-	void appendToEnd(ListNode * node);
-
-	void deleteCacheEntry(ListNode * node);
-	bool hasKey(string key);
+	void deleteCacheEntry(ListNode<CacheDataPtr> * node);
 	void print();
 
 public:
