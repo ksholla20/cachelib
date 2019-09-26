@@ -116,6 +116,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Cache.h" />
+    <ClInclude Include="custom_priority_queue.h" />
     <ClInclude Include="DoublyLinkedList.h" />
     <ClInclude Include="LFUCache.h" />
     <ClInclude Include="LRUCache.h" />
