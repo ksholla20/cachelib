@@ -116,10 +116,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Cache.h" />
+    <ClInclude Include="DoublyLinkedList.h" />
+    <ClInclude Include="LFUCache.h" />
     <ClInclude Include="LRUCache.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cache.cpp" />
+    <ClCompile Include="LFUCache.cpp" />
     <ClCompile Include="LRUCache.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
